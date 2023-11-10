@@ -1,0 +1,18 @@
+# syntax=docker/dockerfile:1
+
+FROM python:3.8-buster
+RUN apt-get install -y default-libmysqlclient-dev
+
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+EXPOSE 5000
+
+COPY . .
+
+#CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run"]

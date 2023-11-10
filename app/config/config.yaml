@@ -1,0 +1,14 @@
+# Database settings
+#database_uri: mysql://dsp1:dsp1N7xcW@kicktv2.deinsportplatz.de/dsp1
+database_uri: mysql://widget:jMlo89ws!@localhost/WIDGETTOOL_DEV_SCHEMA
+
+# HTTP settings
+http_host: 0.0.0.0
+http_port: 5999
+
+threads: 12
+
+# General sharing settings for internal DSP use
+general_sharing_settings:
+  http_user: dspportal
+  http_password: vryScrP7
