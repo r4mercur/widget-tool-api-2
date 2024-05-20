@@ -1,4 +1,4 @@
-__all__ = ['general', 'liveticker', 'match', 'team', 'competion']
+__all__ = ['db', 'general', 'liveticker', 'match', 'team', 'competion']
 
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
