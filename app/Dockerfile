@@ -3,6 +3,9 @@
 FROM python:3.8-buster
 RUN apt-get install -y default-libmysqlclient-dev
 
+# Set git config
+RUN git config --system core.autocrlf true
+
 WORKDIR /app
 
 COPY requirements.txt requirements.txt
