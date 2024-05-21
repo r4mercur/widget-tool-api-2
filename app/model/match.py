@@ -1,6 +1,8 @@
-from sqlalchemy.dialects.mysql import BIT, BIGINT, DATE, DATETIME, TEXT, TINYINT, CHAR, VARCHAR, DOUBLE, LONGBLOB, LONGTEXT
+from sqlalchemy.dialects.mysql import BIT, BIGINT, DATE, DATETIME, TEXT, TINYINT, CHAR, VARCHAR, DOUBLE, LONGBLOB, \
+    LONGTEXT
 from autoserialize import AutoSerialize
 from model import db
+
 
 class ResultCode(db.Model, AutoSerialize):
     __name__ = 'ResultCode'
@@ -8,6 +10,7 @@ class ResultCode(db.Model, AutoSerialize):
     id = db.Column('id', BIGINT, primary_key=True)
     name = db.Column('name', VARCHAR(100))
     shortName = db.Column('shortName', VARCHAR(100))
+
 
 class Match(db.Model, AutoSerialize):
     __name__ = 'Match'
@@ -31,6 +34,26 @@ class Match(db.Model, AutoSerialize):
     visitors = db.Column(BIGINT)
     liveGoalsHome = db.Column(BIGINT)
     liveGoalsAway = db.Column(BIGINT)
+
+
+"""
+ Card Types: 
+    1 - Yellow Card
+    2 - Red Card
+    3 - Yellow Red Card
+"""
+
+
+class Card(db.model, AutoSerialize):
+    __name__ = 'Card'
+    __public__ = ('id', 'fkMatch', 'fkPlayer', 'fkTeam')
+    id = db.Column('id', BIGINT, primary_key=True)
+    fkMatch = db.Column(BIGINT, db.ForeignKey('Match.id'))
+    fkPlayer = db.Column(BIGINT, db.ForeignKey('Player.id'))
+    fkTeam = db.Column(BIGINT, db.ForeignKey('Team.id'))
+    minute = db.Column(BIGINT)
+    cardType = db.Column('cardType', VARCHAR(100))
+
 
 class Goal(db.Model, AutoSerialize):
     __name__ = 'Goal'

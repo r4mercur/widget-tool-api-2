@@ -243,6 +243,8 @@ CREATE TABLE `Card` (
     `fkMatch` bigint(20) NOT NULL,
     `fkPlayer` bigint(20) NOT NULL,
     `fkTeam` bigint(20) NOT NULL,
+    `minute` bigint(20) NOT NULL,
+    `cardType` varchar(100) NOT NULL,
     PRIMARY KEY (`id`),
     KEY `fkMatch` (`fkMatch`),
     KEY `fkPlayer` (`fkPlayer`),
