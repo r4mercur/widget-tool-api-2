@@ -1,0 +1,7 @@
+database_uri: mysql://widget:jwktlq94!@localhost:3306/WIDGETTOOL_DEV_SCHEMA
+general_sharing_settings:
+  http_password: ps2xamn!
+  http_user: widget
+http_host: 0.0.0.0
+http_port: 5999
+threads: 12

@@ -1,11 +1,10 @@
-from sqlalchemy.dialects.mysql import BIT, BIGINT, DATE, DATETIME, TEXT, TINYINT, CHAR, VARCHAR, DOUBLE, LONGBLOB, \
-    LONGTEXT
-from autoserialize import AutoSerialize
+from sqlalchemy.dialects.mysql import BIT, BIGINT, TINYINT, VARCHAR
+from utils import autoserialize
 from model import db
 
 
-class Season(db.Model, AutoSerialize):
-    __tablename__ = 'Season'
+class Season(db.Model, autoserialize.AutoSerialize):
+    __name__ = 'Season'
     __public__ = ('id', 'name', 'current', 'year')
     id = db.Column(BIGINT, primary_key=True)
     name = db.Column(VARCHAR(100))
@@ -14,8 +13,8 @@ class Season(db.Model, AutoSerialize):
     dfbNetKey = db.Column(VARCHAR(20))
 
 
-class CompetionType(db.Model, AutoSerialize):
-    __tablename__ = 'CompetionType'
+class CompetionType(db.Model, autoserialize.AutoSerialize):
+    __name__ = 'CompetionType'
     __public__ = ('id', 'name')
     id = db.Column(BIGINT, primary_key=True)
     name = db.Column(VARCHAR(255))
@@ -23,8 +22,8 @@ class CompetionType(db.Model, AutoSerialize):
     gender = db.relationship('Gender', foreign_keys='CompetionType.fkGender', lazy='joined')
 
 
-class Competion(db.Model, AutoSerialize):
-    __tablename__ = 'Competion'
+class Competion(db.Model, autoserialize.AutoSerialize):
+    __name__ = 'Competion'
     __public__ = ('id', 'name', 'shortName')
     id = db.Column(BIGINT, primary_key=True)
     name = db.Column(VARCHAR(255))
@@ -33,8 +32,8 @@ class Competion(db.Model, AutoSerialize):
     competionType = db.relationship('CompetionType', foreign_keys='Competion.fkCompetionType', lazy='joined')
 
 
-class CompetionRound(db.Model, AutoSerialize):
-    __tablename__ = 'CompetionRound'
+class CompetionRound(db.Model, autoserialize.AutoSerialize):
+    __name__ = 'CompetionRound'
     __public__ = ('id', 'name')
     id = db.Column(BIGINT, primary_key=True)
     name = db.Column(VARCHAR(255))
@@ -43,7 +42,7 @@ class CompetionRound(db.Model, AutoSerialize):
     count = db.Column(BIGINT)
 
 
-class CompetionGroup(db.Model, AutoSerialize):
+class CompetionGroup(db.Model, autoserialize.AutoSerialize):
     __name__ = 'CompetionGroup'
     __public__ = ('id', 'name')
     id = db.Column(BIGINT, primary_key=True)
@@ -52,7 +51,7 @@ class CompetionGroup(db.Model, AutoSerialize):
     competionRound = db.relationship('CompetionRound', foreign_keys='CompetionGroup.fkCompetionRound', lazy='joined')
 
 
-class PublisherCompetionMap(db.Model, AutoSerialize):
+class PublisherCompetionMap(db.Model, autoserialize.AutoSerialize):
     __name__ = 'PublisherCompetionMap'
     __public__ = ('id', 'fkPublisher', 'fkCompetion')
     id = db.Column(BIGINT, primary_key=True)
@@ -62,7 +61,7 @@ class PublisherCompetionMap(db.Model, AutoSerialize):
     competion = db.relationship('Competion', foreign_keys='PublisherCompetionMap.fkCompetion', lazy='joined')
 
 
-class CompetionSeasonMap(db.Model, AutoSerialize):
+class CompetionSeasonMap(db.Model, autoserialize.AutoSerialize):
     __name__ = 'CompetionSeasonMap'
     __public__ = ('id', 'fkCompetion', 'fkSeason', 'placesPromotion', 'placesPromotionExpul', 'placesRelegation',
                   'placesRelegationExpul')
@@ -77,7 +76,7 @@ class CompetionSeasonMap(db.Model, AutoSerialize):
     placesRelegationExpul = db.Column(TINYINT)
 
 
-class CompetionTeamMap(db.Model, AutoSerialize):
+class CompetionTeamMap(db.Model, autoserialize.AutoSerialize):
     __name__ = 'CompetionTeamMap'
     __public__ = ('id', 'fkCompetion', 'fkTeam', 'fkSeason')
     id = db.Column(BIGINT, primary_key=True)

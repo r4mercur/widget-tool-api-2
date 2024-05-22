@@ -1,17 +1,16 @@
-from sqlalchemy.dialects.mysql import BIT, BIGINT, DATE, DATETIME, TEXT, TINYINT, CHAR, VARCHAR, DOUBLE, LONGBLOB, \
-    LONGTEXT
-from autoserialize import AutoSerialize
+from sqlalchemy.dialects.mysql import BIGINT, VARCHAR
+from utils import autoserialize
 from model import db
 
 
-class TeamType(db.Model, AutoSerialize):
+class TeamType(db.Model, autoserialize.AutoSerialize):
     __name__ = 'TeamType'
     __public__ = ('id', 'name')
     id = db.Column(BIGINT, primary_key=True)
     name = db.Column(VARCHAR(255))
 
 
-class Team(db.Model, AutoSerialize):
+class Team(db.Model, autoserialize.AutoSerialize):
     __name__ = 'Team'
     __public__ = ('id', 'name')
     id = db.Column(BIGINT, primary_key=True)
@@ -22,7 +21,7 @@ class Team(db.Model, AutoSerialize):
     teamType = db.relationship('TeamType', foreign_keys='Team.fkTeamType', lazy='joined')
 
 
-class Player(db.Model, AutoSerialize):
+class Player(db.Model, autoserialize.AutoSerialize):
     __name__ = 'Player'
     __public__ = ('id', 'firstName', 'lastName')
     id = db.Column(BIGINT, primary_key=True)
