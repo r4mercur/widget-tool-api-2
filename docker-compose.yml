@@ -14,8 +14,8 @@ services:
     image: adminer
     ports:
       - "8080:8080"
-  api:
-    build: app
-    ports:
-      - "8000:5000"
+  # api:
+  #  build: .
+  #  ports:
+  #    - "8000:5000"
       

@@ -1,7 +1,11 @@
+import os
 from sqlalchemy import create_engine, MetaData
 from model import db
+from dotenv import load_dotenv
 
-engine = create_engine('mysql://root:root@localhost:3306/dfbnet', echo=True)
+load_dotenv()
+database_uri = os.getenv('DATABASE_URI')
+engine = create_engine(database_uri, echo=True)
 
 metadata = MetaData()
 

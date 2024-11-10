@@ -12,7 +12,7 @@ from model.match import Match, ResultCode
 from model.team import Team, Player, TeamType
 
 # blueprints
-from blueprints import match_blueprint
+from blueprints.match import match_blueprint
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = config['database_uri']

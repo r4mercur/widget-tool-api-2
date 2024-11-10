@@ -1,1 +1,1 @@
-from match import match_blueprint
+__all__ = ['match']
